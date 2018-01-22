@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON Example</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <h1>This is a JSON example reading a local file 1ith 1000 records in it</h1>
+    <h3>Data was created using https://www.mockaroo.com/ to simulate real data</h3>
+
+    <section>
+        <h4>Please copy and paste only one row into the text box below. You can create your own as long as it matches this format</h4>
+        <p>
+            { "id": 1, "first_name": "Godfrey", "last_name": "Orro", "email": "gorro0@google.it", "gender": "Male", "ip_address": "119.136.124.129", "address1": "83817 Browning Circle", "city": "Brooksville", "state": "FL", "zip": "34605" }<br> { "id":
+            2, "first_name": "Coretta", "last_name": "Shrubshall", "email": "cshrubshall1@last.fm", "gender": "Female", "ip_address": "154.146.161.170", "address1": "35576 Rockefeller Junction", "city": "Harrisburg", "state": "PA", "zip": "17105" }
+            <br> { "id": 3, "first_name": "Barnett", "last_name": "Milbourn", "email": "bmilbourn2@163.com", "gender": "Male", "ip_address": "95.130.45.27", "address1": "15248 Grim Terrace", "city": "Evansville", "state": "IN", "zip": "47719" }<br> {
+            "id": 4, "first_name": "Glynda", "last_name": "Liebermann", "email": "gliebermann3@nature.com", "gender": "Female", "ip_address": "163.205.183.88", "address1": "52687 Charing Cross Lane", "city": "Jamaica", "state": "NY", "zip": "11470" }
+            <br> { "id": 5, "first_name": "Godard", "last_name": "MacAnellye", "email": "gmacanellye4@berkeley.edu", "gender": "Male", "ip_address": "132.49.225.228", "address1": "4085 Vera Pass", "city": "Marietta", "state": "GA", "zip": "30066" }
+            <br>
+        </p>
+    </section>
+    <div>
+        <label for="record">Paste JSON Text: </label>
+        <input id="record" name="record" type="text" required placeholder="Paste JSON text" tabindex="1" title="Paste the JSON Text" size="100">
+
+    </div>
+    <p>
+        <a href="javascript:parseData();">
+            <div id="parseData">
+                Parse the Data
+            </div>
+        </a>
+    </p>
+
+    <p>The data you pasted is:</p>
+    <div id="output"></div>
+
+
+    <h2>Create JSON text from fields</h2>
+    <h3>Enter info for your favorite place to visit</h3>
+    <form id="form1">
+        <div>
+            <input id="site" name="site" type="text" required placeholder="Enter Name" tabindex="1" title="Enter Name" size="100">
+            <label for="site">Enter Name of Site:</label>
+        </div>
+        <div>
+            <input id="location" name="location" type="text" required placeholder="Enter Location" tabindex="1" title="Enter Location" size="100">
+            <label for="location">Enter Location:</label>
+        </div>
+        <div>
+            <input id="elevation" name="elevation" type="text" required placeholder="Enter Elevation" tabindex="1" title="Enter Elevation" size="100">
+            <label for="elevation">Enter Elevation:</label>
+        </div>
+        <div>
+            <input id="country" name="country" type="text" required placeholder="Enter Country" tabindex="1" title="Enter Country" size="100">
+            <label for="country">Enter Country:</label>
+        </div>
+        <p>
+            <a href="javascript:createJSONstring();">
+                <div id="createJSON">
+                    Create the JSON Data
+                </div>
+            </a>
+        </p>
+    </form>
+    <div id="jsonoutput"></div>
+
+
+    <script>
+        function parseData() {
+            /**********************************************
+             *       This function takes a JSON string and converts it to a JavaScript Array with named elements.
+             *       input:   JSON formatted Text String
+             *       Processing:  Takes this data and converts it to a JavaScript named array
+             *       Output:   JavaScript Array
+             *************************************************/
+
+
+            var data = document.getElementById("record").value;
+            var mydata = JSON.parse(data);
+            var output = "Record ID: " + mydata.id + "<br>";
+
+            output = output + "First Name: " + mydata.first_name + "<br>";
+            output = output + "Last Name: " + mydata.last_name + "<br>";
+            output = output + "eMail: " + mydata.email + "<br>";
+            output = output + "Gender: " + mydata.lgender + "<br>";
+            output = output + "IP Address: " + mydata.ip_address + "<br>";
+            output = output + "Address1: " + mydata.address1 + "<br>";
+            output = output + "City: " + mydata.city + "<br>";
+            output = output + "State: " + mydata.state + "<br>";
+            output = output + "Zip/Postal Code: " + mydata.zip + "<br>";
+            document.getElementById("output").innerHTML = output;
+
+
+        }
+
+
+
+
+        function createJSONstring() {
+            /**********************************************
+             *       This function creates a JSON string from data on a form.
+             *       input:   Data on an HTML Form  
+             *           Site, location, elevation, country
+             *       Processing:  Takes this data and converts it to a JavaScript array then to a JSON String
+             *       Output:   JSON String
+             *************************************************/
+            var items = document.getElementById("form1").elements;
+            var data = new Object();
+            var i = 0;
+            for (i; i < items.length; i++) {
+                if (items[i].type == "text")
+                    data[items[i].id] = items[i].value;
+            }
+            var mydata = JSON.stringify(data);
+            var output = "JSON String:  " + mydata + "<br>";
+
+
+            document.getElementById("jsonoutput").innerHTML = output;
+        }
+    </script>
+</body>
+
+</html>
