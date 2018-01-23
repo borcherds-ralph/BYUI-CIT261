@@ -1,0 +1,129 @@
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    background-color: lightcyan;
+}
+
+body {
+    width: 1170px;
+    margin: auto;
+    background-color: #fff;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 26px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    padding: 10px 5px;
+}
+
+#title,
+#parseJSON,
+#createJSON,
+#readFile,
+#wuJSON {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#form1 {
+    display: flex;
+    flex-direction: column;
+}
+
+#form1 div {
+    display: flex;
+}
+
+input,
+textarea,
+select {
+    font-size: 1em;
+    padding: 2px 5px 4px;
+    border: 1px solid #cecece;
+    border-radius: 2px;
+}
+
+input:required:invalid,
+input:focus:invalid {
+    border: 1px solid #ff0000;
+    background-color: #ffcece;
+}
+
+input:required:valid,
+textarea:required:valid {
+    background: green;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f
+}
+
+
+/* label state styles */
+
+input:focus~label,
+textarea:focus~label,
+select:focus~label {
+    color: #933;
+}
+
+input:checked~label {
+    font-weight: bold;
+}
+
+label {
+    order: 1;
+    width: 12em;
+    text-align: right;
+    padding-right: 0.5em;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+input,
+textarea,
+select {
+    order: 2;
+    flex-basis: 15em;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+#createJSONButton,
+#createJSONButton a,
+#createJSONButton a:visited #parseData,
+#parseData a,
+#parseData a:visited,
+#readJSONfile,
+#readJSONfile a,
+#readJSONfile a:visited,
+#readJSONURL,
+#readJSONURL a,
+#readJSONURL a:visited {
+    font-size: 16px;
+    padding: 10px;
+    background-color: #28921f;
+    color: #fefefe;
+    width: 200px;
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-style: none;
+    font-weight: 700;
+    line-height: 40px;
+}

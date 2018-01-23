@@ -6,275 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JSON Example</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="jsonstyle.css">
+    <script src="json.js"></script>
 </head>
 
 <body>
-    <h1>This is a JSON example</h1>
-    <h3>Data was created using https://www.mockaroo.com/ to simulate real data</h3>
-
-    <section>
+    <section id="title">
+        <h1>This is a JSON example</h1>
+        <h3>Data was created using https://www.mockaroo.com/ to simulate real data</h3>
+    </section>
+    <section id="parseJSON">
         <h4>Please copy and paste only one row into the text box below. You can create your own as long as it matches this format</h4>
         <p>The format is { itemname: value, itemname: value, itemname: value, ..... } <br> Numbers are not enclosed in quotes, all other text items are enclosed in quotes or it will error out.</p>
         <p>
-            { "id": 1, "first_name": "Godfrey", "last_name": "Orro", "email": "gorro0@google.it", "gender": "Male", "ip_address": "119.136.124.129", "address1": "83817 Browning Circle", "city": "Brooksville", "state": "FL", "zip": "34605" }<br> { "id":
-            2, "first_name": "Coretta", "last_name": "Shrubshall", "email": "cshrubshall1@last.fm", "gender": "Female", "ip_address": "154.146.161.170", "address1": "35576 Rockefeller Junction", "city": "Harrisburg", "state": "PA", "zip": "17105" }
-            <br> { "id": 3, "first_name": "Barnett", "last_name": "Milbourn", "email": "bmilbourn2@163.com", "gender": "Male", "ip_address": "95.130.45.27", "address1": "15248 Grim Terrace", "city": "Evansville", "state": "IN", "zip": "47719" }<br> {
-            "id": 4, "first_name": "Glynda", "last_name": "Liebermann", "email": "gliebermann3@nature.com", "gender": "Female", "ip_address": "163.205.183.88", "address1": "52687 Charing Cross Lane", "city": "Jamaica", "state": "NY", "zip": "11470" }
-            <br> { "id": 5, "first_name": "Godard", "last_name": "MacAnellye", "email": "gmacanellye4@berkeley.edu", "gender": "Male", "ip_address": "132.49.225.228", "address1": "4085 Vera Pass", "city": "Marietta", "state": "GA", "zip": "30066" }
-            <br>
+            { "id": 1, "first_name": "Godfrey", "last_name": "Orro", "email": "gorro0@google.it" }<br> { "id": 2, "first_name": "Coretta", "last_name": "Shrubshall", "email": "cshrubshall1@last.fm" }
+            <br> { "id": 3, "first_name": "Barnett", "last_name": "Milbourn", "email": "bmilbourn2@163.com"}<br> { "id": 4, "first_name": "Glynda", "last_name": "Liebermann", "email": "gliebermann3@nature.com" }
+            <br> { "id": 5, "first_name": "Godard", "last_name": "MacAnellye", "email": "gmacanellye4@berkeley.edu" }
         </p>
-    </section>
-    <div>
-        <label for="record">Paste JSON Text: </label>
-        <input id="record" name="record" type="text" required placeholder="Paste JSON text" tabindex="1" title="Paste the JSON Text" size="100">
 
-    </div>
-    <p>
-        <a href="javascript:parseData();">
-            <div id="parseData">
-                Parse the Data
-            </div>
-        </a>
-    </p>
+        <div>
+            <label for="record">Paste JSON Text: </label>
+            <input id="record" name="record" type="text" required placeholder="Paste JSON text" tabindex="1" title="Paste the JSON Text" size="100">
 
-    <p>The data you pasted is:</p>
-    <div id="output"></div>
-
-
-    <h2>Create JSON text from fields</h2>
-    <h3>Enter info for your favorite place to visit</h3>
-    <form id="form1">
-        <div>
-            <input id="site" name="site" type="text" required placeholder="Enter Name" tabindex="1" title="Enter Name" size="100">
-            <label for="site">Enter Name of Site:</label>
-        </div>
-        <div>
-            <input id="location" name="location" type="text" required placeholder="Enter Location" tabindex="1" title="Enter Location" size="100">
-            <label for="location">Enter Location:</label>
-        </div>
-        <div>
-            <input id="elevation" name="elevation" type="text" required placeholder="Enter Elevation" tabindex="1" title="Enter Elevation" size="100">
-            <label for="elevation">Enter Elevation:</label>
-        </div>
-        <div>
-            <input id="country" name="country" type="text" required placeholder="Enter Country" tabindex="1" title="Enter Country" size="100">
-            <label for="country">Enter Country:</label>
         </div>
         <p>
-            <a href="javascript:createJSONstring();">
-                <div id="createJSON">
-                    Create the JSON Data
+            <a href="javascript:parseData();">
+                <div id="parseData">
+                    Parse the Data
                 </div>
             </a>
         </p>
-    </form>
-    <div id="jsonoutput"></div>
-    <br><br>
-    <div>
-        <label for="rownum">enter a number between 1 and 1000: </label>
-        <input id="rownum" name="rownum" type="text" required placeholder="enter a number" tabindex="5" title="enter a number" size="30">
 
-    </div>
-    <div id="JSONdiv">
-        <input type="button" value="Read a JSON file" onclick="readFile( '/cit261/json/MOCK_DATA.json', 'JSONdiv', true )" />
-    </div>
-    <div id="JSONdiv2"></div>
-    <br><br>
-    <div id="wuJSONdiv">
-        <input type="button" value="Read a JSON From Weather Underground" onclick="readFile( 'http://api.wunderground.com/api/d704f31a50bce41f/conditions/q/ca/palm%20springs.json', 'wuJSONdiv', true )" />
-    </div>
-    <div id="wuJSONdiv2"></div>
+        <p>The data you pasted is:</p>
+        <div id="output"></div>
+    </section>
+    <section id="createJSON">
+        <h2>Create JSON text from fields</h2>
+        <h3>Enter info for your favorite place to visit</h3>
+        <form id="form1">
+            <div>
+                <input id="site" name="site" type="text" required placeholder="Enter Name" tabindex="1" title="Enter Name" size="50">
+                <label for="site">Enter Name of Site:</label>
+            </div>
+            <div>
+                <input id="location" name="location" type="text" required placeholder="Enter Location" tabindex="1" title="Enter Location" size="50">
+                <label for="location">Enter Location:</label>
+            </div>
+            <div>
+                <input id="elevation" name="elevation" type="text" required placeholder="Enter Elevation" tabindex="1" title="Enter Elevation" size="50">
+                <label for="elevation">Enter Elevation:</label>
+            </div>
+            <div>
+                <input id="country" name="country" type="text" required placeholder="Enter Country" tabindex="1" title="Enter Country" size="50">
+                <label for="country">Enter Country:</label>
+            </div>
+            <p>
+                <a href="javascript:createJSONstring();">
+                    <div id="createJSONButton">
+                        Create the JSON Data
+                    </div>
+                </a>
+            </p>
+        </form>
+        <div id="jsonoutput"></div>
+    </section>
+    <section id="readFile">
+        <div>
+            <label for="rownum">enter a number between 1 and 1000: </label>
+            <input id="rownum" name="rownum" type="text" required placeholder="enter a number" tabindex="5" title="enter a number" size="30">
 
-    
-    <script>
-        function parseData() {
-            /**********************************************
-             * This function takes a JSON string and converts it to a JavaScript Array with named elements.
-             * input:   JSON formatted Text String
-             * Processing:  Takes this data and converts it to a JavaScript named array
-             * Output:   JavaScript Array
-             *************************************************/
-
-            // Get the pasted sting
-            var data = document.getElementById("record").value;
-            // Parse the string and place it into an ARRAY
-            var mydata = JSON.parse(data);
-
-            /* create the HTML output from the ARRAY by names items.
-               You can get the data by reference number like mydata[0]
-               The issue with that approach is if the items change order then the output 
-               data will not be in the correct order
-            */
-            var output = "Record ID: " + mydata.id + "<br>";
-            output = output + "First Name: " + mydata.first_name + "<br>";
-            output = output + "Last Name: " + mydata.last_name + "<br>";
-            output = output + "eMail: " + mydata.email + "<br>";
-            output = output + "Gender: " + mydata.lgender + "<br>";
-            output = output + "IP Address: " + mydata.ip_address + "<br>";
-            output = output + "Address1: " + mydata.address1 + "<br>";
-            output = output + "City: " + mydata.city + "<br>";
-            output = output + "State: " + mydata.state + "<br>";
-            output = output + "Zip/Postal Code: " + mydata.zip + "<br>";
-
-            // Write the output to the HTML page
-            document.getElementById("output").innerHTML = output;
+        </div>
+        <p id="JSONdiv">
+            <a href="javascript:readFile( '/cit261/json/MOCK_DATA.json', 'JSONdiv', true );">
+                <div id="readJSONfile">
+                    Read a JSON file
+                </div>
+            </a>
+        </p>
 
 
-        }
+        <p>
+            <div id="JSONdiv2"></div>
+        </p>
+    </section>
+    <section id="wuJSON">
+        <br><br>
+        <p id="wuJSONdiv">
+            <a href="javascript:readFile( 'http://api.wunderground.com/api/d704f31a50bce41f/conditions/q/ca/palm%20springs.json, 'wuJSONdiv', true );">
+                <div id="readJSONURL">
+                    Read a JSON From Weather Underground
+                </div>
+            </a>
+        </p>
+        <div id="wuJSONdiv2"></div>
+    </section>
 
-
-
-
-        function createJSONstring() {
-            /**********************************************
-             * This function creates a JSON string from data on a form.
-             * input:   Data on an HTML Form  
-             *    Site, location, elevation, country
-             * Processing:  Takes this data and converts it to a JavaScript array then to a JSON String
-             * Output:   JSON String
-             *************************************************/
-
-            // Get the List of HTML FORM Elements
-            var items = document.getElementById("form1").elements;
-            // Create new object to hold data
-            var data = new Object();
-            // set the counter variable 
-            var i = 0;
-            // Start to loop through the form elements
-            for (i; i < items.length; i++) {
-                /* This if is to show you that you can limit your selection to just one type of data. 
-                   This line can be ommitted if you want to test with various data types
-                */
-                if (items[i].type == "text")
-                /* This creates the Data Array by looping through the FORM Elements
-                   items[i].id is the id name from the HTML FORM elements
-                   items[i].value is the value in those fields
-                   The left side of the = is setting the name of the variable
-                   The right side of the = is setting the value of the named variable
-                */
-                    data[items[i].id] = items[i].value;
-            }
-            // This converts the DATA ARRAY into a JSON String
-            var mydata = JSON.stringify(data);
-
-            // These next two lines write out the JSON string to the web page
-            var output = "JSON String:  " + mydata + "<br>";
-            document.getElementById("jsonoutput").innerHTML = output;
-        }
-
-        function readFile(url, divId, isJSON) {
-            /**********************************************
-             * This function reads a JSON input file from the server.
-             * input:   JSON Data File on the server
-             * Processing:  Takes this data and converts it to a JavaScript array.
-             *      It then finds the row number selected by the user and displays that data
-             * Output:   JavaScript Array of data.
-             *************************************************/
-
-            // Create the object to read the file data
-            var xmlhttp = new XMLHttpRequest();
-            // Setup the object to only run when the file has finished being loaded
-            xmlhttp.onreadystatechange =
-                //	This code is not executed immedidaitely. It is call later when the server starts to respond.
-                function() {
-                    // This next line checks to make sure that the file has finished being read and that it was read correctly.
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                    //	This method is going to serve a several kinds of requests
-                    //	we are taking the 2nd and 3rd fields from the onclick request and passing them to the worked function
-                        if (url.includes("http") == true || url.includes("https") == true) {
-                            doSomethingWithTheResponse2(xmlhttp.responseText, divId, isJSON);
-                        } else {
-                            doSomethingWithTheResponse(xmlhttp.responseText, divId, isJSON);
-                        }
-                        // This is code to help debug the file reading process.
-                        //	else	// this will show us what is happening before the data arrives
-                        //		document.getElementById( 'serverState' ).innerHTML += "Ready State: " + xmlhttp.readyState + "  Status: " + xmlhttp.status + "<BR>";
-                }
-                //	This is where we make our request to the server. We pass along the URL for the file we want
-                //	You can see the name of the file we are requesting in the about HTML code.
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-        }
-
-        function doSomethingWithTheResponse(response, divId, isJSON) {
-            /**********************************************
-             * This function takes the file that was read and exicutes what we want done with it
-             * input:   JSON Data File, 
-             *       The DIV ID where the out needs to be written, 
-             *       is this file a JSON file
-             * Processing:  Takes this data and converts it to a JavaScript array.
-             *      It then finds the row number selected by the user and displays that data
-             * Output:   JavaScript Array of data.
-             *************************************************/
-            var responseText = (isJSON) ? JSON.parse(response) : response;
-
-            //	Now we will take the text and do something with it
-            if (isJSON) {
-                var i = 0; // Set counter variable
-                // Get the record number that the user wants to display and subtract 1
-                // JavaScript arrays start at 0 but the data starts at 1
-                var rownum = document.getElementById("rownum").value - 1;
-
-                // Get the row number from the first level array and create a new array with just that data
-                var data = responseText[rownum];
-                // Get the names of the variable names in the string
-                var names = Object.keys(data)
-                    // create a variable to output the data to the HTML page
-                var responses = "";
-
-                // Loop through the variables in the array and create the output
-                for (i; i < names.length; i++) {
-                    // names[i] is the named element name
-                    // data[names[i]] is the value of the elemet.  
-                    // This is calling the elements by name and not by reference number
-                    responses += names[i] + ": " + data[names[i]] + "<br>";
-                }
-                // This writes out the row selected to the screen
-                document.getElementById(divId + "2").innerHTML = "Just the text<br>" + responses;
-            } else {
-                // If the file is not a JSON file then the entire contents are written out.
-                document.getElementById(divId).innerHTML = responseText;
-            }
-        }
-
-        function doSomethingWithTheResponse2(response, divId, isJSON) {
-            /**********************************************
-             * This function takes the file that was read and exicutes what we want done with it
-             * input:   JSON Data File, 
-             *       The DIV ID where the out needs to be written, 
-             *       is this file a JSON file
-             * Processing:  Takes this data and converts it to a JavaScript array.
-             *      It then finds the row number selected by the user and displays that data
-             * Output:   JavaScript Array of data.
-             *************************************************/
-            var responseText = (isJSON) ? JSON.parse(response) : response;
-
-            //	Now we will take the text and do something with it
-            if (isJSON) {
-                var i = 0; // Set counter variable
-                var data = responseText.current_observation;
-                // Get the names of the variable names in the string
-                var names = Object.keys(data)
-                    // create a variable to output the data to the HTML page
-                var responses = "";
-
-                // Loop through the variables in the array and create the output
-                for (i; i < names.length; i++) {
-                    // names[i] is the named element name
-                    // data[names[i]] is the value of the elemet.  
-                    // This is calling the elements by name and not by reference number
-                    responses += names[i] + ": " + data[names[i]] + "<br>";
-                }
-                // This writes out the row selected to the screen
-                document.getElementById(divId + "2").innerHTML = "Just the text<br>" + responses;
-            } else {
-                // If the file is not a JSON file then the entire contents are written out.
-                document.getElementById(divId).innerHTML = responseText;
-            }
-        }
-    </script>
 </body>
 
 </html>
