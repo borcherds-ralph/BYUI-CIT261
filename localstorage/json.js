@@ -95,10 +95,7 @@ function doSomethingWithTheResponse2(response, divId, isJSON) {
             localStorage.setItem('todaylow', data['0']['low']['fahrenheit']);
             localStorage.setItem('percip', data['0']['pop']);
             localStorage.setItem('maxwind', data['0']['maxwind']['mph'] + " mph");
-
-
         } else {
-
             var data = responseText.current_observation;
             var location = data.display_location;
             var names = Object.keys(data);
@@ -109,11 +106,9 @@ function doSomethingWithTheResponse2(response, divId, isJSON) {
                 localStorage.setItem(names[i], data[names[i]]);
             }
             for (x; x < locnames.length; x++) {
-
                 localStorage.setItem(locnames[x], location[locnames[x]]);
             }
         }
-
     } else {
         // If the file is not a JSON file then the entire contents are written out.
         document.getElementById(divId).innerHTML = responseText;
