@@ -18,16 +18,11 @@ function readWeatherFile(url, divId, isJSON) {
             //	This method is going to serve a several kinds of requests
             //	we are taking the 2nd and 3rd fields from the onclick request and passing them to the worked function
                 if (url.includes("http") == true || url.includes("https") == true) {
-                    doSomethingWithTheResponse2(xmlhttp.responseText, divId, isJSON);
-                } else {
-                    doSomethingWithTheResponse(xmlhttp.responseText, divId, isJSON);
-                }
-                // This is code to help debug the file reading process.
-                //	else	// this will show us what is happening before the data arrives
-                //		document.getElementById( 'serverState' ).innerHTML += "Ready State: " + xmlhttp.readyState + "  Status: " + xmlhttp.status + "<BR>";
+                doSomethingWithTheResponse2(xmlhttp.responseText, divId, isJSON);
+            } else {
+                doSomethingWithTheResponse(xmlhttp.responseText, divId, isJSON);
+            }
         }
-        //	This is where we make our request to the server. We pass along the URL for the file we want
-        //	You can see the name of the file we are requesting in the about HTML code.
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -60,8 +55,6 @@ function doSomethingWithTheResponse(response, divId, isJSON) {
 
         // Loop through the variables in the array and create the output
         for (i; i < names.length; i++) {
-            // names[i] is the named element name
-            // data[names[i]] is the value of the elemet.  
             // This is calling the elements by name and not by reference number
             responses += names[i] + ": " + data[names[i]] + "<br>";
         }
@@ -120,10 +113,7 @@ function doSomethingWithTheResponse2(response, divId, isJSON) {
                 localStorage.setItem(locnames[x], location[locnames[x]]);
             }
         }
-        // Get the names of the variable names in the string
 
-        // This writes out the row selected to the screen
-        // document.getElementById(divId + "2").innerHTML = "Just the text<br>" + responses;
     } else {
         // If the file is not a JSON file then the entire contents are written out.
         document.getElementById(divId).innerHTML = responseText;
