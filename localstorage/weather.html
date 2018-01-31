@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="localStorageAPI.js"></script>
+    <title>Document</title>
+    <style>
+        /************************************************************
+        *
+        *                   Forecast Data 
+        *
+        ************************************************************/
+        
+        #forecast {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            max-width: 650px;
+            justify-content: flex-start;
+            padding: 0 10px;
+        }
+        
+        .cityname {
+            width: 100%;
+            background-color: #0e113b;
+            color: #fff;
+            font-size: 1.25em;
+            font-weight: bold;
+            padding: 5px 0;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            text-align: center
+        }
+        
+        .forecast {
+            padding: 0;
+            display: flex;
+            flex: 1 1 auto;
+            flex-flow: row wrap;
+            align-content: flex-start;
+        }
+        
+        .flex-order,
+        .flex-order1,
+        .flex-order2,
+        .flex-order3,
+        .flex-order4,
+        .flex-order5,
+        .flex-order6,
+        .flex-order7,
+        .flex-order8,
+        .flex-order9 {
+            padding: 2px 0;
+            text-align: center;
+            border: 0px solid;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            line-height: 2em;
+        }
+        
+        .flex-order {
+            width: 100%;
+            background-color: #334e4d;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+        
+        .flex-order1,
+        .flex-order3,
+        .flex-order5 {
+            width: 50%;
+            background-color: #b0f7f4;
+        }
+        
+        .flex-order2,
+        .flex-order4 {
+            width: 50%;
+            background-color: #f5b57e;
+        }
+        
+        .flex-order6 {
+            order: 8;
+            width: 100%;
+            font-weight: bold;
+            background-color: #334e4d;
+            color: #fff;
+            padding: 5px 0;
+            font-size: 1.1em;
+        }
+        
+        .flex-order7 {
+            order: 9;
+            width: 10%;
+            background-color: #fff7b6;
+        }
+        
+        .flex-order8 {
+            order: 10;
+            width: 10%;
+            background-color: #b0f7f4;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="javascript:writeLocalWeather();">
+        <div>Read Weather data from Local Storage and fill out table</div>
+    </a>
+    <section id="forecast">
+        <h2 id="hiddenitems">Weather forecast table.</h2>
+        <div class="forecast">
+            <div class="cityname" id="cityname"></div>
+            <div class="flex-order">Weather Forecast Data</div>
+            <div class="flex-order1 bolding" id="summary1">Currently</div>
+            <div class="flex-order1" id="summary2"></div>
+            <div class="flex-order2 bolding" id="high">Forecast High</div>
+            <div class="flex-order2" id="hightemp"></div>
+            <div class="flex-order3 bolding" id="low">Forecast Low</div>
+            <div class="flex-order3" id="lowtemp"></div>
+            <div class="flex-order4 bolding" id="chanceperc">Chance Precipitation</div>
+            <div class="flex-order4" id="chancepercperc"></div>
+            <div class="flex-order5 bolding" id="maxwind">Today's Max Wind</div>
+            <div class="flex-order5" id="maxwindspeed"></div>
+            <div class="flex-order9 bolding hiddenitems" id="windchill">Current Windchill</div>
+            <div class="flex-order9 hiddenitems" id="windchillnow"></div>
+            <div class="flex-order6 bolding" id="10day">10 Day Forecast</div>
+            <div class="flex-order7" id="day0"></div>
+            <div class="flex-order7" id="day1"></div>
+            <div class="flex-order7" id="day2"></div>
+            <div class="flex-order7" id="day3"></div>
+            <div class="flex-order7" id="day4"></div>
+            <div class="flex-order7" id="day5"></div>
+            <div class="flex-order7" id="day6"></div>
+            <div class="flex-order7" id="day7"></div>
+            <div class="flex-order7" id="day8"></div>
+            <div class="flex-order7" id="day9"></div>
+            <div class="flex-order8" id="day0temp"></div>
+            <div class="flex-order8" id="day1temp"></div>
+            <div class="flex-order8" id="day2temp"></div>
+            <div class="flex-order8" id="day3temp"></div>
+            <div class="flex-order8" id="day4temp"></div>
+            <div class="flex-order8" id="day5temp"></div>
+            <div class="flex-order8" id="day6temp"></div>
+            <div class="flex-order8" id="day7temp"></div>
+            <div class="flex-order8" id="day8temp"></div>
+            <div class="flex-order8" id="day9temp"></div>
+        </div>
+    </section>
+</body>
+
+</html>
