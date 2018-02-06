@@ -109,6 +109,7 @@ function doSomethingWithTheResponse2(response, divId, isJSON) {
                 localStorage.setItem(locnames[x], location[locnames[x]]);
             }
         }
+        display();
     } else {
         // If the file is not a JSON file then the entire contents are written out.
         document.getElementById(divId).innerHTML = responseText;
