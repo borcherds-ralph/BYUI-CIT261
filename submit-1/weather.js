@@ -14,16 +14,18 @@ function readWeatherFile(url, divId, isJSON) {
         //	This code is not executed immedidaitely. It is call later when the server starts to respond.
         function() {
             // This next line checks to make sure that the file has finished being read and that it was read correctly.
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                writeDatatoLocalStorage(xmlhttp.responseText, divId, isJSON);
-
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                writeDatatolocalStorage(xmlhttp.responseText, divId, isJSON);
+            } else { // this will show us what is happening before the data arrives
+                // document.getElementById('serverState').innerHTML += "Ready State: " + xmlhttp.readyState + "  Status: " + xmlhttp.status + "<BR>";
+            }
         }
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open("GET", url, isJSON);
     xmlhttp.send();
 }
 
 
-function writeDatatoLocalStorage(response, divId, isJSON) {
+function writeDatatolocalStorage(response, divId, isJSON) {
     /**********************************************
      * This function takes the file that was read and exicutes what we want done with it
      * input:   JSON Data File, 
@@ -45,13 +47,14 @@ function writeDatatoLocalStorage(response, divId, isJSON) {
 
             for (index in data) {
                 localStorage.setItem('day' + index, data[index]['date']['weekday_short']);
-                localStorage.setItem('day' + index + '-high', data[index]['high']['fahrenheit']);
-                localStorage.setItem('day' + index + '-low', data[index]['low']['fahrenheit']);
+                localStorage.setItem('day' + index + 'high', data[index]['high']['fahrenheit']);
+                localStorage.setItem('day' + index + 'low', data[index]['low']['fahrenheit']);
             }
             localStorage.setItem('todayhigh', data['0']['high']['fahrenheit']);
             localStorage.setItem('todaylow', data['0']['low']['fahrenheit']);
             localStorage.setItem('percip', data['0']['pop']);
             localStorage.setItem('maxwind', data['0']['maxwind']['mph'] + " mph");
+            console.log(localStorage);
         } else {
             var data = responseText.current_observation;
             var location = data.display_location;

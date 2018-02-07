@@ -1,41 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&#124;Rammetto+One');
 html {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-    background-color: lightcyan;
+    font-size: 12px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #0e113b;
 }
 
-body,
-.body {
+body {
     width: 1170px;
+    min-height: 100vh;
     margin: auto;
-    background-color: #fff;
-    margin-top: 0;
-    font-size: 14px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding-bottom: 50px;
+    background-color: #fefefe;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
-    font-size: 34px;
-}
-
-h2 {
-    font-size: 30px;
-}
-
-h3 {
-    font-size: 26px;
-}
-
-h4 {
-    font-size: 20px;
-}
-
-p {
-    padding: 10px 5px;
+section {
+    display: flex;
+    padding: 10px 0;
 }
 
 #showTable {
@@ -48,17 +29,17 @@ p {
 
 
 /************************************************************
-*
-*                   Forecast Data Table
-*
-************************************************************/
+    *
+    *                   Forecast Data 
+    *
+    ************************************************************/
 
 .hiddenitems {
     display: none;
 }
 
 #forecast {
-    display: none;
+    display: flex;
     flex: 1 1 auto;
     flex-direction: column;
     max-width: 650px;
@@ -105,7 +86,6 @@ p {
     border-right: 0;
     border-top: 0;
     line-height: 2em;
-    min-height: 2em;
 }
 
 .flex-order {
@@ -115,14 +95,6 @@ p {
     font-size: 1.2em;
     font-weight: bold;
     padding: 5px 0;
-}
-
-.odd {
-    background-color: #b0f7f4;
-}
-
-.even {
-    background-color: #f5b57e;
 }
 
 .flex-order1,
@@ -159,13 +131,4 @@ p {
     order: 10;
     width: 10%;
     background-color: #b0f7f4;
-}
-
-width: 10%;
-background-color: #b0f7f4;
-
-}
-width: 10%;
-background-color: #b0f7f4;
-
 }

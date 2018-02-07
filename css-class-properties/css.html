@@ -14,11 +14,11 @@
     <main>
         <section>
             <input type="button" onClick="showTable()" id="showTable" value="Display Table" title="Show the forecast table" />
+            <input type="button" onClick="hideTable()" id="hideTable" value="Hide Table" title="Hide the forecast table" />
         </section>
         <section id="forecast">
             <h2 id="hiddenitems">Weather forecast table.</h2>
             <div class="forecast" id="forecastTable">
-
                 <div class="cityname" id="cityname"></div>
                 <div class="flex-order even">Weather Forecast Data</div>
                 <div class="flex-order1 bolding odd" id="summary1">Currently</div>
@@ -62,20 +62,48 @@
             <p>Color: <input id="btncolor" class="jscolor" value="ab2567"></p>
             <button class="odd" onClick="javascript:changeOdd();">Change this color</button>
             <button class="even" onClick="javascript:changeEven();">Change this color</button>
-            <button class="font" onClick="javascript:changeFont();">Change Font</button>
+            <button class="font" onClick="javascript:changeFont1();">Change Font to Josefin Sans</button>
+            <button class="font" onClick="javascript:changeFont2();">Change Font to Rammetto One</button>
+            <button class="font" onClick="javascript:resetFont();">Reset to Page Default Font</button>
         </section>
     </main>
 
     <script>
-        function changeFont() {
+        function changeFont1() {
             var font = document.getElementsByClassName("body");
             font[0].style.fontFamily = "Josefin Sans";
             font[0].style.fontSize = "16px";
         }
 
+        function changeFont2() {
+            var font = document.getElementsByClassName("body");
+            font[0].style.fontFamily = "Rammetto One";
+            font[0].style.fontSize = "20px";
+        }
+
+        function resetFont() {
+            var font = document.getElementsByClassName("body");
+            font[0].style.fontFamily = "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
+            font[0].style.fontSize = "14px";
+        }
+
+
         function showTable() {
             var show = document.querySelector("#forecast");
+            var btn = document.getElementById('showTable');
+            var btn2 = document.getElementById('hideTable');
             show.style.display = "flex";
+            btn.style.display = "none";
+            btn2.style.display = "flex";
+        }
+
+        function hideTable() {
+            var show = document.querySelector("#forecast");
+            show.style.display = "none";
+            var btn = document.getElementById('showTable');
+            var btn2 = document.getElementById('hideTable');
+            btn.style.display = "flex";
+            btn2.style.display = "none";
         }
 
         function changeOdd() {
