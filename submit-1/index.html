@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ralph Borcherds - Summision #1</title>
 
-    <script src="weather.js"></script>
+    <!-- <script src="weather.js"></script> -->
     <script src="index.js"></script>
-    <!-- <script src="localStorageAPI.js"></script> -->
+    <script src="jscolor.js"></script>
 
     <link rel="stylesheet" href="style.css">
 
 
 </head>
 
-<body>
+<body class="body">
     <section id="citystatelookup">
         <div>
             <label for="zipcode">Enter a zip code: </label>
@@ -31,50 +31,61 @@
             <input type="text" id="state" readonly>
         </div>
     </section>
-    <!-- <section id="showhideweather">
-        <input type="button" onClick="showTable()" id="showTable" value="Display Weather Table" title="Show the forecast table" />
-        <input type="button" onClick="hideTable()" id="hideTable" value="Hide Weather Table" title="Hide the forecast table" />
+    <section id="showhideweather">
+        <input type="button" onClick="showTable()" id="showTable" value="Populate Weather Table" title="Populate the forecast table" />
+        <!-- <input type="button" onClick="hideTable()" id="hideTable" value="Hide Weather Table" title="Hide the forecast table" /> -->
         <div id='serverState'></div>
-    </section> -->
+    </section>
     <section id="forecast">
         <h2 id="hiddenitems">Weather forecast table.</h2>
-        <div class="forecast">
+        <div class="forecast" id="forecastTable">
             <div class="cityname" id="cityname"></div>
             <div class="flex-order">Weather Forecast Data</div>
-            <div class="flex-order1 bolding" id="summary1">Currently</div>
-            <div class="flex-order1" id="summary2"></div>
-            <div class="flex-order2 bolding" id="high">Forecast High</div>
-            <div class="flex-order2" id="hightemp"></div>
-            <div class="flex-order3 bolding" id="low">Forecast Low</div>
-            <div class="flex-order3" id="lowtemp"></div>
-            <div class="flex-order4 bolding" id="chanceperc">Chance Precipitation</div>
-            <div class="flex-order4" id="chancepercperc"></div>
-            <div class="flex-order5 bolding" id="maxwind">Today's Max Wind</div>
-            <div class="flex-order5" id="maxwindspeed"></div>
-            <div class="flex-order9 bolding hiddenitems" id="windchill">Current Windchill</div>
-            <div class="flex-order9 hiddenitems" id="windchillnow"></div>
+            <div class="flex-order1 bolding odd" id="summary1">Currently</div>
+            <div class="flex-order1 odd" id="summary2"></div>
+            <div class="flex-order2 bolding even" id="high">Forecast High</div>
+            <div class="flex-order2 even" id="hightemp"></div>
+            <div class="flex-order3 bolding odd" id="low">Forecast Low</div>
+            <div class="flex-order3 odd" id="lowtemp"></div>
+            <div class="flex-order4 bolding even" id="chanceperc">Chance Precipitation</div>
+            <div class="flex-order4 even" id="chancepercperc"></div>
+            <div class="flex-order5 bolding odd" id="maxwind">Today's Max Wind</div>
+            <div class="flex-order5 odd" id="maxwindspeed"></div>
+            <div class="flex-order9 bolding hiddenitems even" id="windchill">Current Windchill</div>
+            <div class="flex-order9 hiddenitems even" id="windchillnow"></div>
             <div class="flex-order6 bolding" id="10day">10 Day Forecast</div>
-            <div class="flex-order7" id="day0"></div>
-            <div class="flex-order7" id="day1"></div>
-            <div class="flex-order7" id="day2"></div>
-            <div class="flex-order7" id="day3"></div>
-            <div class="flex-order7" id="day4"></div>
-            <div class="flex-order7" id="day5"></div>
-            <div class="flex-order7" id="day6"></div>
-            <div class="flex-order7" id="day7"></div>
-            <div class="flex-order7" id="day8"></div>
-            <div class="flex-order7" id="day9"></div>
-            <div class="flex-order8" id="day0temp"></div>
-            <div class="flex-order8" id="day1temp"></div>
-            <div class="flex-order8" id="day2temp"></div>
-            <div class="flex-order8" id="day3temp"></div>
-            <div class="flex-order8" id="day4temp"></div>
-            <div class="flex-order8" id="day5temp"></div>
-            <div class="flex-order8" id="day6temp"></div>
-            <div class="flex-order8" id="day7temp"></div>
-            <div class="flex-order8" id="day8temp"></div>
-            <div class="flex-order8" id="day9temp"></div>
+            <div class="flex-order7 odd" id="day0"></div>
+            <div class="flex-order7 odd" id="day1"></div>
+            <div class="flex-order7 odd" id="day2"></div>
+            <div class="flex-order7 odd" id="day3"></div>
+            <div class="flex-order7 odd" id="day4"></div>
+            <div class="flex-order7 odd" id="day5"></div>
+            <div class="flex-order7 odd" id="day6"></div>
+            <div class="flex-order7 odd" id="day7"></div>
+            <div class="flex-order7 odd" id="day8"></div>
+            <div class="flex-order7 odd" id="day9"></div>
+            <div class="flex-order8 even" id="day0temp"></div>
+            <div class="flex-order8 even" id="day1temp"></div>
+            <div class="flex-order8 even" id="day2temp"></div>
+            <div class="flex-order8 even" id="day3temp"></div>
+            <div class="flex-order8 even" id="day4temp"></div>
+            <div class="flex-order8 even" id="day5temp"></div>
+            <div class="flex-order8 even" id="day6temp"></div>
+            <div class="flex-order8 even" id="day7temp"></div>
+            <div class="flex-order8 even" id="day8temp"></div>
+            <div class="flex-order8 even" id="day9temp"></div>
         </div>
+    </section>
+
+    <section id="colorModifier">
+        <p>Select a color by clicking on the color box and chosing a new color</p>
+        <p>Then click the button to change the CSS Class background color</p>
+        <p>Color: <input id="btncolor" class="jscolor" value="ab2567"></p>
+        <button class="odd" onClick="javascript:changeOdd();">Change this color</button>
+        <button class="even" onClick="javascript:changeEven();">Change this color</button>
+        <button class="font" onClick="javascript:changeFont1();">Change Font to Josefin Sans</button>
+        <button class="font" onClick="javascript:changeFont2();">Change Font to Rammetto One</button>
+        <button class="font" onClick="javascript:resetFont();">Reset to Page Default Font</button>
     </section>
 </body>
 
