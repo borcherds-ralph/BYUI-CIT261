@@ -2,9 +2,6 @@ var ajax1 = getHTTPObject();
 var ajax2 = getHTTPObject();
 var ajax3 = getHTTPObject();
 
-
-
-
 function changeOdd() {
     var elements = document.querySelectorAll(".odd");
     for (var i = 0; i < elements.length; i++) {
