@@ -10,17 +10,23 @@ body {
     width: calc(75vw);
     background-color: darkgrey;
     margin: auto;
-    padding-top: 50px;
-    /* height: 100vh; */
+    min-height: 100vh;
     display: flex;
-    /* align-content: center; */
     justify-content: center;
+    flex-direction: column;
+}
+
+#dance {
+    display: flex;
+    flex-direction: row;
 }
 
 .feet {
     display: flex;
     align-items: center;
     height: calc(50%);
+    flex-direction: column;
+    padding-top: 150px;
 }
 
 .description {
@@ -32,14 +38,28 @@ body {
     width: 230px;
 }
 
-.left img,
-.right img {
+.female,
+.male {
+    display: flex;
+    flex-direction: row;
+}
+
+#fm-left img,
+#fm-right img,
+#left img,
+#right img {
     width: 30px;
     text-align: center;
     justify-content: center;
     align-content: center;
     color: white;
     padding: 5px;
+}
+
+.fm-left img,
+.fm-right img,
+.left img,
+.right img {
     animation-direction: normal;
 }
 
@@ -49,6 +69,14 @@ body {
 
 .right {
     animation: rumbaright 5s infinite;
+}
+
+.fm-left {
+    animation: fm-rumbaleft 5s infinite;
+}
+
+.fm-right {
+    animation: fm-rumbaright 5s infinite;
 }
 
 @keyframes rumbaleft {
@@ -79,4 +107,53 @@ body {
     100% {
         transform: translate(0, 0);
     }
+}
+
+@keyframes fm-rumbaleft {
+    0% {
+        transform: translate(0, 0);
+    }
+    18% {
+        transform: translate(0, -100px);
+    }
+    66% {
+        transform: translate(100px, -100px);
+    }
+    88% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fm-rumbaright {
+    0% {
+        transform: translate(0, 0);
+    }
+    34% {
+        transform: translate(100px, -100px);
+    }
+    72% {
+        transform: translate(100px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+#nameTranform {
+    font-size: 36px;
+    font-weight: 700;
+    max-width: 200px;
+    margin: 100px 0 0 0;
+}
+
+.circleDiv {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+}
+
+.circleDiv.horizTranslate {
+    transition: 10s;
+    margin-left: 50% !important;
 }

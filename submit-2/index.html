@@ -7,19 +7,75 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+
 </head>
 
-<body>
-
-    <content class="feet">
+<body onLoad="init()">
+    <div id="dance">
         <div class="description">
             <h2>Basic Rumba dance steps</h2>
             <img src="rumba-steps-man.gif" alt="jpeg image showing man rumba steps">
+            <input type="button" value="click to start movements" OnClick="startRumba()">
+            <input type="button" value="click to Pause" OnClick="pauseRumba()">
+            <h4>Audio will play when button is clicked.<br> Song is Madilu System by Ya Jean.</h4>
+            <audio id="audiocontrol">
+                <source src="madilu-system-ya-jean.mp3" tye="audio/mpeg">
+            </audio>
         </div>
-        <div class="left"><img src="left.jpg" alt="left foot"></div>
-        <div class="right"><img src="right.jpg" alt="right foot"></div>
+        <content class="feet">
+            <!-- This is showing transitions -->
+            <div class="female">
+                <div id="fm-left"><img src="fm-left.jpg" alt="left foot"></div>
+                <div id="fm-right"><img src="fm-right.jpg" alt="right foot"></div>
+            </div>
+            <div class="male">
+                <div id="left"><img src="left.jpg" alt="left foot"></div>
+                <div id="right"><img src="right.jpg" alt="right foot"></div>
+            </div>
+
+        </content>
+
+
+    </div>
+    <p>*************************************************************************</p>
+    <content>
+        <p>Check the bottom of the page before you click this button to see the changes.</p>
+        <p>Then enter text and then click the button and the new HTML DIV and text will be added.</p>
+        <p>Please type some content to be added to the end of this page:</p>
+        <input type="text" id="randomContent"><br>
+        <input type="button" value="Add to end of page" onClick="addDiv()">
+        <!-- <input type="button" value="Click to see name of last HTML Section" touchstart="lastChildName()"> -->
+        <br><br><br><br><br>
     </content>
+    <p>*************************************************************************</p>
+    <content id="transitions" class="transitions">
+        <div class='circleDiv'></div>
+        <button value='move' class='moveObject'>Move</button>
+    </content>
+    <p>*************************************************************************</p>
+    <content class="tranforms" id="tranforms">
+        <label for="name">Enter Your Name:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="degree">Enter a number between 0 and 359 to rotate your name:</label>
+        <input type="text" id="degree" name="degree"><br>
+        <label for="skew1">Enter a number between 0 and 60 to skew your name on x-axis:</label>
+        <input type="text" id="skew1" name="skew1"><br>
+        <label for="skew2">Enter a number between 0 and 60 to skew your name on y-axis:</label>
+        <input type="text" id="skew2" name="skew2"><br>
+        <input type="button" value="click to Rotate your name" onClick="transformRotate()">
+        <input type="button" value="click to Skew your name" onClick="transformSkew()">
+        <div id="nameTranform" class="nameTranform">
+
+        </div>
+    </content>
+    <p>*************************************************************************</p>
+    <content class="newcontent" id="newcontent">
+
+    </content>
+
+
+    <script src="index.js"></script>
+
 </body>
 
 </html>
