@@ -8,7 +8,7 @@ var letters = "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the prin
 // Drawing variables
 var drawArea;
 var contxt;
-var mouse = { x: 0, y: 0, down: false }
+var pointer = { x: 0, y: 0, down: false }
 
 function init() {
     drawArea = document.getElementById('canvas');
@@ -29,20 +29,20 @@ function init() {
 }
 
 function mouseMove(event) {
-    mouse.x = event.pageX;
-    mouse.y = event.pageY;
+    pointer.x = event.pageX;
+    pointer.y = event.pageY;
     draw();
 }
 
 function draw() {
-    if (mouse.down) {
-        var d = distance(screenLoc, mouse);
+    if (pointer.down) {
+        var d = distance(screenLoc, pointer);
         var fontSize = minFontSize + d / 2;
         var letter = letters[counter];
         var stepSize = textWidth(letter, fontSize);
 
         if (d > stepSize) {
-            var angle = Math.atan2(mouse.y - screenLoc.y, mouse.x - screenLoc.x);
+            var angle = Math.atan2(pointer.y - screenLoc.y, pointer.x - screenLoc.x);
 
             contxt.font = fontSize + "px Georgia";
 
@@ -57,7 +57,7 @@ function draw() {
                 counter = 0;
             }
 
-            //console.log (screenLoc.x + Math.cos( angle ) * stepSize)
+            // console.log(screenLoc.x + Math.cos(angle) * stepSize)
             screenLoc.x = screenLoc.x + Math.cos(angle) * stepSize;
             screenLoc.y = screenLoc.y + Math.sin(angle) * stepSize;
 
@@ -80,7 +80,7 @@ function distance(pt, pt2) {
 }
 
 function mouseDown(event) {
-    mouse.down = true;
+    pointer.down = true;
     screenLoc.x = event.pageX;
     screenLoc.y = event.pageY;
 
@@ -88,7 +88,7 @@ function mouseDown(event) {
 }
 
 function mouseUp(event) {
-    mouse.down = false;
+    pointer.down = false;
 }
 
 function doubleClick(event) {
