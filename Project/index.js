@@ -60,7 +60,7 @@ travel.addEventListener("click", function() {
                     readWeatherFile(wuurl2, divId, isJSON);
                     $("content").fadeIn(5000);
                     var tmp = document.getElementById('weatherHeader').innerHTML;
-                    document.getElementById('weatherHeader').innerHTML = sessionStorage.getItem('uname') + ", " + tmp;
+                    document.getElementById('weatherHeader').innerHTML = localStorage.getItem('uname') + ", " + tmp;
                 }
             }
         ajax1.open("GET", url, true);
@@ -144,7 +144,7 @@ function loginSuccess() {
                     $("content").fadeIn(2000);
                 }
             }
-        ajax1.open("GET", url, true);
+        ajax1.open("GET", url, false);
         ajax1.send();
     };
 };
@@ -198,27 +198,6 @@ function getHTTPObject() {
     return xmlhttp;
 }
 
-
-function regUser() {
-    var XHR = getHTTPObject();
-
-    // Bind the FormData object and the form element
-    var FD = new FormData(document.getElementById("signupForm"));
-
-    // Set up our request
-    var str = window.location.pathname;
-    var base_url = str.slice(0, str.lastIndexOf("/"));
-    var url = "//" + window.location.host + base_url + "/checkdb.php?action=register";
-    XHR.open("POST", url, false);
-
-    // The data sent is what the user provided in the form
-    XHR.send(FD);
-    if (XHR.response == 'TRUE') {
-        regSuccess();
-    } else {
-        regFail();
-    }
-}
 
 function checkUserName() {
 
@@ -383,25 +362,48 @@ function loginUser() {
 
     // Bind the FormData object and the form element
     var uname = document.getElementById('loginUname').value;
-    var pword = document.getElementById('loginPassword').value;
-    var params = ('action=loginUser&uname=' + uname + '&pword=' + pword);
+    var FD = new FormData(document.getElementById("loginForm"));
 
     // Set up our request
     var str = window.location.pathname;
     var base_url = str.slice(0, str.lastIndexOf("/"));
-    var url = "//" + window.location.host + base_url + "/checkdb.php?" + params;
+    var url = "//" + window.location.host + base_url + "/checkdb.php?action=loginUser";
 
-    XHR.open("GET", url, false);
+    XHR.open("POST", url, false);
 
     // The data sent is what the user provided in the form
-    XHR.send();
+    XHR.send(FD);
 
     if (XHR.responseText == 'TRUE') {
+        localStorage.setItem('uname', uname);
         loginSuccess();
-        sessionStorage.setItem('uname', uname);
-
     } else {
+        localStorage.removeItem('uname');
         loginFail();
-        sessionStorage.removeItem('uname');
+
+    }
+}
+
+
+
+
+function regUser() {
+    var XHR = getHTTPObject();
+
+    // Bind the FormData object and the form element
+    var FD = new FormData(document.getElementById("signupForm"));
+
+    // Set up our request
+    var str = window.location.pathname;
+    var base_url = str.slice(0, str.lastIndexOf("/"));
+    var url = "//" + window.location.host + base_url + "/checkdb.php?action=register";
+    XHR.open("POST", url, false);
+
+    // The data sent is what the user provided in the form
+    XHR.send(FD);
+    if (XHR.response == 'TRUE') {
+        regSuccess();
+    } else {
+        regFail();
     }
 }

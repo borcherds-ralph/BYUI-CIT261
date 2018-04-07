@@ -135,18 +135,16 @@ switch ($action) {
     break;
 
     case 'loginUser':
-        $username = filter_input(INPUT_GET, 'uname');
-        $password = filter_input(INPUT_GET, 'pword');
+        $username = filter_input(INPUT_POST, 'uname');
+        $password = filter_input(INPUT_POST, 'pword');
 
         $userData = getUser($username);
         $result = password_verify($password, $userData['userPassword']);
-
+        
         if($result){
             echo 'TRUE';
         } else {
             echo 'FALSE';
         }
     break;
-
-
 }
