@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box
+        }
+        
+        .game {
+            padding: 2em;
+            background: pink;
+        }
+    </style>
+
+    <script>
+        function gameOn(userMove) {
+            var userChoice, aiChoiceName;
+            userChoice = userMove
+
+
+            // AI choice
+            var AIChoice = Math.random();
+            if (AIChoice < 0.34) {
+                aiChoiceName = "rock";
+            } else if (AIChoice <= 0.67) {
+                aiChoiceName = "paper";
+            } else {
+                aiChoiceName = "scissors";
+            }
+            aiChoiceOut = aiChoiceName;
+
+            results = compare(userChoice, aiChoiceOut);
+            var output = "Your Choice is: " + userChoice + "<br>";
+            output += "Computer Choice is: " + aiChoiceOut + "<br>";
+            document.getElementById('result').innerHTML = output + "<br><hr><br>" + results;
+        };
+        // Compare user and computer choice
+        function compare(choice1, choice2) {
+            var result;
+            if (choice1 === choice2) {
+                result = "It's a tie!";
+            }
+
+            if (choice1 === "rock") {
+                if (choice2 === "scissors") { // rock wins
+                    result = "You win!";
+                } else { // paper wins
+                    result = "You lose! Try again.";
+                }
+            }
+
+            if (choice1 === "paper") {
+                if (choice2 === "rock") { // paper wins
+                    result = "You win!";
+                } else { // scissors wins
+                    result = "You lose! Try again.";
+                }
+            }
+
+            if (choice1 === "scissors") {
+                if (choice2 === "rock") { // rock wins
+                    result = "You lose! Try again.";
+                } else { // scissors wins
+                    result = "You win!";
+                }
+            }
+            return result;
+        };
+    </script>
+</head>
+
+<body>
+    <section class="container">
+        <h2 style="color:silver">Rock, Paper, Scissors Game</h2> <br>
+
+        <label><input type="button" value="Rock" onclick="gameOn(this.value.toLowerCase());"></label>
+        <label><input type="button" value="Paper" onclick="gameOn(this.value.toLowerCase());"></label>
+        <label><input type="button" value="Scissors" onclick="gameOn(this.value.toLowerCase());"></label>
+        <h3 id="result"></h3>
+
+    </section>
+</body>
+
+</html>

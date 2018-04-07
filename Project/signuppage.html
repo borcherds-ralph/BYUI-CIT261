@@ -1,32 +1,35 @@
-<content>
-    <form action="/signup" method="post">
-        <div>
-            <label>First Name:</label>
-            <input type="text" name="fname" id="fname" />
-        </div>
-        <div>
-            <label>Last Name:</label>
-            <input type="text" name="lname" id="lname" />
-        </div>
-        <div>
-            <label>Username:</label>
-            <input type="text" name="username" id="username" onChange="javascript:checkUserName()" />
-        </div>
-        <div>
-            <label>Email:</label>
-            <input type="text" name="email" id="email" onChange="javascript:checkEmail()" />
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password" id="password" />
-        </div>
-        <div>
-            <label>City:</label>
-            <input type="text" name="city" id="city" />
-        </div>
-        <div>
-            <label>State:</label>
-            <select type="text" name="state" id="state">
+<content class="signupForm">
+    <form action="#" method="post" id="signupForm" autocomplete="off">
+        <fieldset>
+            <div>
+                <label>First Name:</label>
+                <input type="text" name="fname" id="fname" />
+            </div>
+            <div>
+                <label>Last Name:</label>
+                <input type="text" name="lname" id="lname" />
+            </div>
+            <div>
+                <label>Username:</label>
+                <input type="text" name="uname" id="signupUsername" onChange="javascript:checkUserName()" autocomplete="off" />
+                <div id="badUsername"></div>
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="text" name="email" id="email" onChange="javascript:checkEmail()" autocomplete="off" />
+                <div id="badEmail"></div>
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" name="pword" id="password" />
+            </div>
+            <div>
+                <label>City:</label>
+                <input type="text" name="city" id="city" />
+            </div>
+            <div>
+                <label>State:</label>
+                <select type="text" name="state" id="state">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -79,14 +82,14 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
-        </div>
+            </div>
+            <div>
+                <label>Zip Code:</label>
+                <input type="text" name="zipcode" id="zipcode" />
+            </div>
+        </fieldset>
         <div>
-            <label>Zip Code:</label>
-            <input type="text" name="zipcode" id="zipcode" />
-        </div>
-
-        <div>
-            <input class="btn btn-primary" type="submit" value="Sign Up" />
+            <input class="btn btn-primary" type="submit" value="Sign Up" onclick="regUser()" />
         </div>
     </form>
 </content>

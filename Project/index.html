@@ -11,39 +11,53 @@
 
     <!-- Icon Library -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="animations.css" rel="stylesheet">
+    <link rel="stylesheet" href="component.css">
     <link href="style.css" rel="stylesheet">
+
+    <script src="modernizr.custom.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("content").css("display", "none");
+            $("content").fadeIn(1000);
+        });
+    </script>
+
 </head>
 
 <body>
     <header>
         <nav>
-            <div id="cssmenu">
-                <ul>
-                    <li id="home"><a href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
-                    <li id="travel"><a href="#"><i class="fa fa-fw fa-paper-plane-o"></i> Travel Forecast</a></li>
-                    <li id="login"><a href="#"><i class="fa fa-fw fa-check"></i> Login</a></li>
-                    <li id="signup"><a href="#"><i class="fa fa-fw fa-user-plus"></i> Signup</a></li>
+            <div id="cssmenu" class="dl-menuwrapper">
+                <ul class="dl-menu">
+                    <li id="home"><a class="transition"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                    <li id="travel"><a class="transition"><i class="fa fa-fw fa-paper-plane-o  loginHidden"></i> Travel Forecast</a></li>
+                    <li id="login"><a class="transition"><i class="fa fa-fw fa-check"></i> Login</a></li>
+                    <li id="signup"><a class="transition"><i class="fa fa-fw fa-user-plus"></i> Signup</a></li>
                 </ul>
             </div>
 
         </nav>
     </header>
-    <main id="main">
-        <div id="content">
-            <content>
+    <main id="content">
+        <content>
+            <div>
                 <h1>Single Page Application Demo</h1>
                 <p>This site was created by Ralph Borcherds.</p>
                 <p>This shows basic demo of how a single page application works.</p>
                 <p>Click on the menu items above and this page will not reload but will display different things.</p>
-
-            </content>
-        </div>
+            </div>
+        </content>
     </main>
     <footer>
 
     </footer>
-    <script src="index.js"></script>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js'></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

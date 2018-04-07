@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include 'config.php';
 
@@ -11,33 +12,58 @@ if ($action == NULL){
 // Check for an existing email address
 function checkExistingEmail($email) {
     $db = dbConnect();
-    $sql = 'SELECT userEmail FROM users WHERE userEmail = :email';
+    $sql = 'SELECT userEmail FROM cit261.users WHERE userEmail = :email';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
     $matchEmail = $stmt->fetch(PDO::FETCH_NUM);
     $stmt->closeCursor();
     if(empty($matchEmail)){
-        return "{'Success': 'FALSE'}";
+        return 'FALSE';
     } else {
-        return "{'Success': 'TRUE'}";
+        return 'TRUE';
     }
 }
+
+// Check for an existing email address
+function getUser($username) {
+    $db = dbConnect();
+    $sql = 'SELECT * FROM cit261.users WHERE username = :username';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchEmail = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $matchEmail;
+    
+}
+// Check for an existing username
+function checkExistingUname($uname) {
+    $db = dbConnect();
+    $sql = 'SELECT username FROM cit261.users WHERE username = :uname';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':uname', $uname, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchUname = $stmt->fetch(PDO::FETCH_NUM);
+    $stmt->closeCursor();
+    if(empty($matchUname)){
+        return 'FALSE';
+    } else {
+        return 'TRUE';
+    }
+}
+
 
 Function checkEmail($clientEmail){
     $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
     return $valEmail;
 }
 
-function regUser($firstname, $lastname, $username, $email, $password, $city, $state, $zip){
-     
+function regUser($firstname, $lastname, $username, $email, $password, $city, $state, $zip){ 
     $db = dbConnect();
-
-    $sql = 'INSERT INTO users (userFirstName, userLastName, username, userEmail, userPassword, userCity, userState, userZipCode) 
+    $sql = 'INSERT INTO cit261.users (userFirstName, userLastName, username, userEmail, userPassword, userCity, userState, userZipCode) 
     VALUES (:userfirstname, :userlastname, :userusername, :useremail, :userpassword, :usercity, :userstate, :userzipcode)';
-   
     $stmt = $db->prepare($sql);
-
     $stmt->bindValue(':userfirstname', $firstname, PDO::PARAM_STR);
     $stmt->bindValue(':userlastname', $lastname, PDO::PARAM_STR);
     $stmt->bindValue(':userusername', $username, PDO::PARAM_STR);
@@ -55,6 +81,19 @@ function regUser($firstname, $lastname, $username, $email, $password, $city, $st
     // Return the indication of success (rows changed)
     return $rowsChanged;
 }
+
+function loginUserValidate($username, $password) {
+    $db = dbConnect();
+    $sql = 'SELECT username, userPassword from cit261.users WHERE username = :userusername AND userPassword = :userpassword';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':userusername', $username, PDO::PARAM_STR);
+    $stmt->bindValue(':userpassword', $password, PDO::PARAM_STR);
+    $stmt->execute();
+    $rows = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rows;
+}
+
 switch ($action) {
 
     case 'checkEmail':
@@ -62,30 +101,52 @@ switch ($action) {
         $mailresult = checkeMail($mail);
         if ($mailresult == true) {
             $result = checkExistingEmail($mail);
-            //echo json_encode($result);
-            return json_encode($result);
+            echo $result;
     } else {
-        //echo json_encode("{ 'SUCCESS': 'invalid'}");
-        return json_encode("{ 'SUCCESS': 'invalid'}");
+        echo "INVALID";
+        
     }
     break;
 
     case 'register':
         $firstname = filter_input(INPUT_POST, 'fname');
         $lastname = filter_input(INPUT_POST, 'lname');
-        $username = filter_input(INPUT_POST, 'username');
+        $username = filter_input(INPUT_POST, 'uname');
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'pword');
         $city =  filter_input(INPUT_POST, 'city');
         $state =  filter_input(INPUT_POST, 'state');
-        $zip =  filter_input(INPUT_POST, 'zip');
-        $result = regUser($firstname, $lastname, $username, $email, $password);
+        $zip =  filter_input(INPUT_POST, 'zipcode');
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $result = regUser($firstname, $lastname, $username, $email, $hashedPassword, $city, $state, $zip);
         if($result == 1){
-            echo json_encode("{ 'SUCCESS': 'true'}");
-            return json_encode("{ 'SUCCESS': 'true'}");
+            echo 'TRUE';
         } else {
-            echo json_encode("{ 'SUCCESS': 'false'}");
-            return json_encode("{ 'SUCCESS': 'false'}");
+            echo 'FALSE';
         }
     break;
+
+    case 'validateUsername':
+        $uname = filter_input(INPUT_GET, 'uname');
+        $unameresult = checkExistingUname($uname);
+        echo $unameresult;
+    break;
+
+    case 'loginUser':
+        $username = filter_input(INPUT_GET, 'uname');
+        $password = filter_input(INPUT_GET, 'pword');
+
+        $userData = getUser($username);
+        $result = password_verify($password, $userData['userPassword']);
+
+        if($result){
+            echo 'TRUE';
+        } else {
+            echo 'FALSE';
+        }
+    break;
+
+
 }
