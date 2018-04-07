@@ -2,3 +2,4 @@
 .vscode/database.json
 *.mp4
 *.webm
+config.php

@@ -384,9 +384,6 @@ function loginUser() {
     }
 }
 
-
-
-
 function regUser() {
     var XHR = getHTTPObject();
 
